@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 import numpy as np
 
+# reference 
+# https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html
+
 
 class CustomBatchNorm(nn.Module):
     def __init__(self, num_features, epsilon=1e-5, momentum=0.9):
