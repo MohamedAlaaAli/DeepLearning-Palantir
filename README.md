@@ -23,7 +23,7 @@ The **Deep Learning Palantir** is inspired by the mythical seeing-stones of Midd
 Below is a list of the deep learning research papers currently implemented in this repository:
 
 - Paper 1: [Prototypical Networks for few shot learning](https://proceedings.neurips.cc/paper_files/paper/2017/file/cb8da6767461f2812ae4290eac7cbc42-Paper.pdf)
-- Paper 2: [Attention is all you need](lhttps://arxiv.org/abs/1706.03762)
+- Paper 2: [Attention is all you need](https://arxiv.org/abs/1706.03762)
 - ... (more to be added)
 
 ## Installation
