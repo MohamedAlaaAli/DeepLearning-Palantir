@@ -24,6 +24,10 @@ Below is a list of the deep learning research papers currently implemented in th
 
 - Paper 1: [Prototypical Networks for few shot learning](https://proceedings.neurips.cc/paper_files/paper/2017/file/cb8da6767461f2812ae4290eac7cbc42-Paper.pdf)
 - Paper 2: [Attention is all you need](https://arxiv.org/abs/1706.03762)
+- Paper 3: [Network in Network ](https://arxiv.org/pdf/1312.4400v3)
+- Paper 4: [Deep Residual Learnig for Image Recognition ](https://arxiv.org/pdf/1512.03385)
+
+
 - ... (more to be added)
 
 ## Installation
