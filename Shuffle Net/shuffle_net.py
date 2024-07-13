@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from data_loader import load_cifar10
-from trainer import train_and_validate
+from Utils.data_loader import load_cifar10
+from Utils.trainer import trainer
 
 class Shuffle(nn.Module):
     """
