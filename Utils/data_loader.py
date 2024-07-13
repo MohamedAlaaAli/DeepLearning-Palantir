@@ -26,7 +26,7 @@ def load_cifar10(batch_size=128, val_split=0.1):
     ])
 
     # Load CIFAR-10 dataset
-    train_dataset = datasets.CIFAR10(root='./data', train=True, download=False, transform=transform_train)
+    train_dataset = datasets.CIFAR10(root='data', train=True, download=False, transform=transform_train)
 
     # Calculate the number of validation samples
     val_size = int(len(train_dataset) * val_split)
