@@ -31,7 +31,8 @@ Below is a list of the deep learning research papers currently implemented in th
 ](https://arxiv.org/abs/1707.01083)
 - Paper 7: [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
 ](https://arxiv.org/abs/1502.03167)
-
+- Paper 8: [Squeeze-and-Excitation Networks
+](https://arxiv.org/abs/1709.01507)
 
 - ... (more to be added)
 
