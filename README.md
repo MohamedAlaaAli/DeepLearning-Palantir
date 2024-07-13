@@ -26,6 +26,11 @@ Below is a list of the deep learning research papers currently implemented in th
 - Paper 2: [Attention is all you need](https://arxiv.org/abs/1706.03762)
 - Paper 3: [Network in Network ](https://arxiv.org/pdf/1312.4400v3)
 - Paper 4: [Deep Residual Learnig for Image Recognition ](https://arxiv.org/pdf/1512.03385)
+- Paper 5: [Alex Net ](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html)
+- Paper 6: [ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices
+](https://arxiv.org/abs/1707.01083)
+- Paper 7: [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+](https://arxiv.org/abs/1502.03167)
 
 
 - ... (more to be added)
