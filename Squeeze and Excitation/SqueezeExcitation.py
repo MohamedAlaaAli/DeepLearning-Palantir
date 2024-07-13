@@ -1,9 +1,19 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from pathlib import Path
+import sys
+import os
+
+# Get the parent directory of the current script (assuming SqueezeExcitation.py is in the 'Squeeze and Excitation' directory)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+parent_dir = os.path.dirname(current_dir)
+
+# Add the parent directory to the Python path
+sys.path.append(parent_dir)
 from Utils.data_loader import load_cifar10
 from Utils.trainer import train_and_validate
-from ResNet import ResBlock, ResNet
+from ResNet.Res_Net import ResNet, ResBlock
 
 
 class SEBlock(nn.Module):
