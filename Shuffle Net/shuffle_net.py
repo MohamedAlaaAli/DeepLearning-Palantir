@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from Utils.data_loader import load_cifar10
-from Utils.trainer import trainer
+from Utils.trainer import train_and_validate
 
 class Shuffle(nn.Module):
     """
