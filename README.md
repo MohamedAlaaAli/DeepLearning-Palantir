@@ -38,7 +38,7 @@ Below is a list of the deep learning research papers currently implemented in th
 - Paper 10: [MobileNetV2: Inverted Residuals and Linear Bottlenecks
 ](https://arxiv.org/abs/1801.04381)
 - Paper 11: [Searching for MobileNetV3
-](https://arxiv.org/abs/1905.02244v57)
+](https://arxiv.org/abs/1905.02244v5)
 
 
 - ... (more to be added)
