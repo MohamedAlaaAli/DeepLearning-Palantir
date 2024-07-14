@@ -1,7 +1,7 @@
 import torch
 from iou import intersection_over_union
 
-def nms(bboxes, iou_threshold, threshold, box_format="corners"):
+def nms(bboxes:list, iou_threshold:float, threshold:float, box_format="corners"):
     """
     Does Non Max Suppression given bboxes
 
@@ -15,8 +15,6 @@ def nms(bboxes, iou_threshold, threshold, box_format="corners"):
     Returns:
         list: bboxes after performing NMS given a specific IoU threshold
     """
-
-    assert type(bboxes) == list
 
     bboxes = [box for box in bboxes if box[1] > threshold]
     bboxes = sorted(bboxes, key=lambda x: x[1], reverse=True)
