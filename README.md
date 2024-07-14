@@ -41,6 +41,8 @@ Below is a list of the deep learning research papers currently implemented in th
     ](https://arxiv.org/abs/1801.04381)
     - [Searching for MobileNetV3
     ](https://arxiv.org/abs/1905.02244v5)
+    - [Aggregated Residual Transformations for Deep Neural Networks
+    ](https://arxiv.org/abs/1611.05431)
 
 - Others
     - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
