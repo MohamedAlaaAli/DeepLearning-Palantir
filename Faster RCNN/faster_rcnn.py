@@ -1,9 +1,11 @@
 import torch
+import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.models import vgg16
 
 
+################################################### Backbone Function #################################################
 def get_backbone(pretrained = False):
     
     model = vgg16(pretrained=pretrained)
@@ -19,4 +21,5 @@ def get_backbone(pretrained = False):
     faster_rcnn_fe_extractor = nn.Sequential(*req_features)
     return faster_rcnn_fe_extractor
 
+################################################### Backbone Function #################################################
 
