@@ -30,6 +30,7 @@ Below is a list of the deep learning research papers currently implemented in th
     - [Network in Network ](https://arxiv.org/pdf/1312.4400v3)
     - [Deep Residual Learnig for Image Recognition ](https://arxiv.org/pdf/1512.03385)
     - [Alex Net ](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html)
+    - [Inception](https://speckle-nutmeg-688.notion.site/Inception-Architecture-Going-from-Deeper-To-Wider-a6e75a42f7814b90bf192902fce0e583?pvs=4)
     - [ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices
     ](https://arxiv.org/abs/1707.01083)
 
