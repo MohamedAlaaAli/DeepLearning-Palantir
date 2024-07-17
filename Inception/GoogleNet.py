@@ -21,6 +21,7 @@ class ConvBlock(nn.Module):
         x = self.act(x)
         return x
 
+
 class InceptionModule(nn.Module):
     def __init__(self, in_channels, f_1x1, f_3x3_adaptor, f_3x3, f_5x5_adaptor, f_5x5, f_mp_adaptor):
         """
@@ -40,54 +41,52 @@ class InceptionModule(nn.Module):
 
         self.branch2 = nn.Sequential(
             ConvBlock(in_channels, f_3x3_adaptor, kernel_size=1,stride=1, padding=0), 
-            ConvBlock(in_channels, f_3x3, kernel_size=3,stride=1, padding=1) 
+            ConvBlock(f_3x3_adaptor, f_3x3, kernel_size=3,stride=1, padding=1) 
         )
 
         self.branch3 = nn.Sequential(
             ConvBlock(in_channels, f_5x5_adaptor, kernel_size=1, stride = 1, padding=0),
-            ConvBlock(in_channels, f_5x5, kernel_size=5,stride=1, padding=2)
+            ConvBlock(f_5x5_adaptor, f_5x5, kernel_size=5,stride=1, padding=2)
         )
 
         self.branch4 = nn.Sequential(
             nn.MaxPool2d(3, stride = 1, padding=1, ceil_mode=True), # preserve the spatial dimension for concatenation.
-            ConvBlock(in_channels, f_mp_adaptor, kernel_size = 1, stride = True, padding = 0)
+            ConvBlock(in_channels, f_mp_adaptor, kernel_size = 1, stride = 1, padding = 0)
         )
 
-        def forward(self, x):
-            branch1 = self.branch1(x)
-            branch2 =  self.branch2(x)
-            branch3 =  self.branch3(x)
-            branch4 =  self.branch4(x)
+    def forward(self, x):
+        branch1 = self.branch1(x)
+        branch2 =  self.branch2(x)
+        branch3 =  self.branch3(x)
+        branch4 =  self.branch4(x)
 
-            return torch.cat([branch1, branch2, branch3, branch4], 1) # concatenate in the channel dim
-    
+        return torch.cat([branch1, branch2, branch3, branch4], 1) # concatenate in the channel dim
 
-class AuxClassifier():
+class AuxClassifier(nn.Module):
     def __init__(self, in_channels, num_classes):
         super(AuxClassifier, self).__init__()
 
         self.pool = nn.AdaptiveAvgPool2d((4,4)) # (4,4) regardless the input spatial dimensions 
         self.conv = nn.Conv2d(in_channels, 128, kernel_size= 1, stride= 1, padding=0)
-        self.act1 = nn.ReLU()
-        nn.fc1 = nn.Linear(2048, 1024)
-        self.act2 = nn.ReLU()
+        self.act = nn.ReLU()
+        self.fc1 = nn.Linear(2048, 1024)
         self.dropout = nn.Dropout(0.7)
         self.fc2 = nn.Linear(1024, num_classes)
 
-    def farward(self,x):
+    def forward(self, x):
         x = self.pool(x)
 
         x = self.conv(x)
-        x = self.act1(x)
-
-        x = nn.fc1(x)
-        x = self.act2(x)
+        x = self.act(x)
+        
+        x = torch.flatten(x, 1)
+        x = self.fc1(x)
+        x = self.act(x)
         x = self.dropout(x)
 
         x = self.fc2(x)
-
-        return x 
-
+        return x
+    
 #------------------------------------------------------------------------------------- Utility Classes -----------------------------------------------------------------
 
 class GoogleNet(nn.Module):
@@ -183,65 +182,53 @@ class GoogleNet(nn.Module):
                                             f_5x5 = 128,
                                             f_mp_adaptor = 128)
         
-        self.pool5 = nn.AdaptiveAvgPool1d((1,1))
+        self.pool5 = nn.AdaptiveAvgPool2d((1,1))
         self.dropout = nn.Dropout(0.4)
-        self.fc = nn.Linear(1024, 1000)
+        self.fc = nn.Linear(1024, num_classes)
 
         # auxiliary classifiers used for training 
 
         self.Aux1 = AuxClassifier(in_channels=512, num_classes = num_classes) # num_channels is the output of the 3rd Inception module (4A) 
         self.Aux2 = AuxClassifier(in_channels=528, num_classes = num_classes) # num_channels is the output of the 6th Inception module (4D)
 
-        def forward(self, x):
-            # the stem 
-            x = self.conv1(x)
-            x = self.pool1(x)
-            x = self.conv2(x)
-            x = self.conv3(x)
-            x = self.pool2(x)
+    def forward(self, x):
+        # the stem 
+        x = self.conv1(x)
+        x = self.pool1(x)
+        x = self.conv2(x)
+        x = self.conv3(x)
+        x = self.pool2(x)
 
-            # consecutive Inception blocks (3's family) 
-            x = self.inception3A(x)
-            x = self.inception3B(x)
-
-
-            # consecutive Inception blocks (4's family)
-            x = self.inception4A(x)
-# branching
-            # auxiliary classifier branch
-            aux1_output = self.Aux1(x)
-
-            x = self.inception4B(x)
-            x = self.inception4C(x)
-            x = self.inception4D(x)
-# branching
-            # auxiliary classifier branch
-            aux2_output = self.Aux2(x)
-
-            x = self.inception4E(x)
+        # consecutive Inception blocks (3's family) 
+        x = self.inception3A(x)
+        x = self.inception3B(x)
 
 
-            # consecutive Inception blocks (5's famity)
-            x = self.inception5A(x)
-            x = self.inception5B(x)
+        # consecutive Inception blocks (4's family)
+        x = self.inception4A(x)
+        # branching
+        # auxiliary classifier branch
+        aux1_output = self.Aux1(x)
+
+        x = self.inception4B(x)
+        x = self.inception4C(x)
+        x = self.inception4D(x)
+        # branching
+        # auxiliary classifier branch
+        aux2_output = self.Aux2(x)
+
+        x = self.inception4E(x)
 
 
-            x = self.pool5(x)
-            x = torch.flatten(x,1) 
-            x = self.dropout(x)
-            x = self.fc(x)
-
-            return x, aux1_output, aux2_output
+        # consecutive Inception blocks (5's famity)
+        x = self.inception5A(x)
+        x = self.inception5B(x)
 
 
+        x = self.pool5(x)
+        x = torch.flatten(x,1) 
+        x = self.dropout(x)
+        x = self.fc(x)
 
-
-
-
-
-
-
-
-
-        
+        return x, aux1_output, aux2_output
 
