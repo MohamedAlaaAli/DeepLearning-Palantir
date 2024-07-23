@@ -49,6 +49,9 @@ Below is a list of the deep learning research papers currently implemented in th
     - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
     ](https://arxiv.org/abs/1502.03167)
 
+    - [Feature Pyramid Networks for Object Detection
+    ](https://arxiv.org/pdf/1612.03144)
+
 - ... (more to be added)
 
 ## Installation
