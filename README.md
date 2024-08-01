@@ -45,6 +45,10 @@ Below is a list of the deep learning research papers currently implemented in th
     - [Aggregated Residual Transformations for Deep Neural Networks
     ](https://arxiv.org/abs/1611.05431)
 
+- Security:
+    - [Fast Gradient Sign Method
+    ](https://arxiv.org/abs/1412.6572)
+
 - Others
     - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
     ](https://arxiv.org/abs/1502.03167)
