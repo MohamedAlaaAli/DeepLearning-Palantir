@@ -37,4 +37,4 @@ def cw_l2_attack(model, x, target, c=1, max_iter=1000, learning_rate=0.01):
 
         x_adv = (delta + x).clamp(0.0, 1.0)
 
-    return (x + delta).detach(), delta.detach()
+    return (x_adv).detach(), delta.detach()
